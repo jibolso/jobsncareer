@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+  <script type="text/javascript">
+  $(document).bind("mobileinit", function(){
+	  $.mobile.page.prototype.options.addBackBtn = true;
+  })  
+  </script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/index.js"></script>  
+  <script src="js/jquery.mobile-1.3.1.min.js"></script>
+   
+</head>
+<body>
+   <div data-role="page">
+   		<div id="reposHome" data-role="page">
+    <div data-role="header" data-position="fixed">
+        <h1>GitHub Search</h1>
+    </div>
+
+<script src="text/javascript">
+$.ajax("https://api.github.com/legacy/repos/search/javascript").done(function(data) {
+     var i, repo;
+     $.each(data.repositories, function (i, repo) {
+        $("#allRepos").append("<p><a href='https://github.com/" + repo.username + "/" + repo.name + "'>" + repo.name + "</a><br>"+ repo.description + "&g\lt;/p>");
+     });
+});
+</script>
+    <div data-role="content">
+        <ul id="allRepos" data-role="listview"  data-filter="true">
+        </ul>
+    </div>
+</div>
+  
+   </div>
+</body>
+</html>
